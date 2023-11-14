@@ -48,6 +48,6 @@ public class Cart {
     @JoinColumn(name ="customer_id")
     private Customer customer;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cart")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
     private Set<CartItem>cartItem;
 }
