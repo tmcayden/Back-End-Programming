@@ -26,23 +26,23 @@ public class Excursion {
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "excursion_price")
-    private BigDecimal excursionPrice;
+    private BigDecimal excursion_price;
 
     @Column(name = "excursion_title")
-    private String excursionTitle;
+    private String excursion_title;
 
     @Column(name = "image_url")
-    private String imageURL;
+    private String image_URL;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    private Date lastUpdate;
+    private Date last_update;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="vacation_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name ="vacation_id")
     private Vacation vacation;
 
     @ManyToMany(mappedBy = "excursions")

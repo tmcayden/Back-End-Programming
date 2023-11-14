@@ -20,29 +20,29 @@ public class Vacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
+    @Column(name = "vacation_id")
     private long id;
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "image_url")
-    private String imageURL;
+    private String image_URL;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    private Date lastUpdate;
+    private Date last_update;
 
     @Column(name = "travel_fare_price")
-    private BigDecimal travelFarePrice;
+    private BigDecimal travel_price;
 
     @Column(name = "vacation_title")
-    private String vacationTitle;
+    private String vacation_title;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "vacation")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "vacation")
     private Set<Excursion> excursions;
 }

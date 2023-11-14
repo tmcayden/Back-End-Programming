@@ -22,24 +22,24 @@ public class Division {
     Long id;
 
     @Column(name = "division")
-    String division;
+    String division_name;
 
     @Column(name = "create_date")
     @CreationTimestamp
-    Date createDate;
+    Date create_date;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    Date lastUpdate;
+    Date last_update;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
 
     @Column(name = "country_id")
-    private long countryId;
+    private long country_id;
     public void setCountry(Country country){
-        setCountryId(country.getId());
+        setCountry_id(country.getId());
         this.country = country;
     }
 

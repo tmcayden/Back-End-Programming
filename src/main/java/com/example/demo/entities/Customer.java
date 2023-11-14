@@ -27,26 +27,26 @@ public class Customer {
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "customer_first_name")
-    private String customerFirstName;
+    private String firstName;
 
     @Column(name = "customer_last_name")
-    private String customerLastName;
+    private String lastName;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    private Date lastUpdate;
+    private Date last_update;
 
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "postal_code")
-    private String postalCode;
+    private String postal_code;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "division_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "division_id")
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
