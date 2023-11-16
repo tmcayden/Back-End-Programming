@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,14 +10,15 @@ import java.util.Set;
 
 @Table(name = "cart_items")
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_item_id")
-    private long id;
+    private Long id;
 
     @Column(name = "create_date")
     @CreationTimestamp

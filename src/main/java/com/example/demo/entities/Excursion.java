@@ -2,9 +2,7 @@ package com.example.demo.entities;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,6 +12,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "excursions")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Excursion {
@@ -21,7 +21,7 @@ public class Excursion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "excursion_id")
-    private long id;
+    private Long id;
 
     @Column(name = "create_date")
     @CreationTimestamp

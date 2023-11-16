@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,14 +10,15 @@ import java.util.Set;
 
 @Entity
 @Table(name = "countries")
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
-    private long id;
+    private Long id;
 
     @Column(name = "country")
     private String country_name;

@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,7 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "divisions")
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Division {
@@ -37,7 +36,7 @@ public class Division {
     private Country country;
 
     @Column(name = "country_id")
-    private long country_id;
+    private Long country_id;
     public void setCountry(Country country){
         setCountry_id(country.getId());
         this.country = country;

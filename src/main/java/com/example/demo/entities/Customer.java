@@ -1,18 +1,18 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "customers")
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Customer {
@@ -20,7 +20,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private long id;
+    private Long id;
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -46,9 +46,9 @@ public class Customer {
     private String postal_code;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "division_id", nullable = false)
+    @JoinColumn(name = "division_id")
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Set<Cart> carts;
+    private Set<Cart> carts = new HashSet<>();
 }

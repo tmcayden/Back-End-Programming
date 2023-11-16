@@ -1,27 +1,27 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 
 @Table(name = "carts")
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
-    private long id;
+    private Long id;
 
     @Column(name = "package_price")
     private BigDecimal package_price;
@@ -48,6 +48,14 @@ public class Cart {
     @JoinColumn(name ="customer_id")
     private Customer customer;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cart")
     private Set<CartItem>cartItem;
+
+    public void add(CartItem item) {
+        if (cartItem == null) {
+            cartItem = new HashSet<>();
+        }
+        cartItem.add(item);
+        item.setCart(this);
+    }
 }

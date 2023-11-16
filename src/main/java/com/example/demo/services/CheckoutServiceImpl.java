@@ -19,10 +19,11 @@ import java.util.UUID;
 public class CheckoutServiceImpl implements CheckoutService {
 
     private CartRepository cartRepository;
-
+    private CartItemRepository cartItemRepository;
     @Autowired
-    public CheckoutServiceImpl(CartRepository cartRepository) {
+    public CheckoutServiceImpl(CartRepository cartRepository, CartItemRepository cartItemRepository) {
         this.cartRepository = cartRepository;
+        this.cartItemRepository = cartItemRepository;
     }
 
     @Override
@@ -30,23 +31,20 @@ public class CheckoutServiceImpl implements CheckoutService {
     public PurchaseResponse placeOrder(Purchase purchase) {
         Cart cart = purchase.getCart();
 
-        String orderTrackingNumber = generatOrderTrackingNumber();
+        String orderTrackingNumber = generateOrderTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
 
         Set<CartItem> cartItems = purchase.getCartItems();
-        cart.setCartItem(cartItems);
+        cartItems.forEach(item -> cart.add(item));
 
         cart.setStatus(StatusType.ordered);
-
-        Customer customer = purchase.getCustomer();
-        cart.setCustomer(customer);
 
         cartRepository.save(cart);
 
         return new PurchaseResponse(orderTrackingNumber);
     }
 
-    private String generatOrderTrackingNumber() {
+    private String generateOrderTrackingNumber() {
         return UUID.randomUUID().toString();
     }
 }
